@@ -7,9 +7,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "clean": "rm -rf .output .nuxt node_modules/.cache/nuxt",
+    "serve": "node .output/server/index.mjs",
+    "serve:clean": "npm run clean && npm run build && npm run serve",
+    "serve:cached": "npm run clean && npm run build && npm run build && npm run serve"
   },
   "dependencies": {
+    "@nuxt/fonts": "^0.10.0",
     "nuxt": "^3.13.0",
     "vue": "latest",
     "vue-router": "latest"

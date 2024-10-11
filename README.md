@@ -1,75 +1,10 @@
-# Nuxt 3 Minimal Starter
+# `@nuxt/fonts` cdnURL bug reproduction
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This repo is a reproduction of [this bug](https://github.com/nuxt/fonts/issues/224).
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+1. Clone this repo
+2. Run `npm install`
+3. Run `npm serve:clean`
+4. Observe that JS/CSS works, and that network requests for those assets are made to `<root>/static/_nuxt/*`, but custom fonts _do not_ work, and the font requests are made to `<root>/_fonts/*`
+5. Run `npm serve:cached`
+6. Observe that JS/CSS still works, but customs fonts also work, and font requests are now hitting the correct URL, `<root>/static/_fonts/*`
